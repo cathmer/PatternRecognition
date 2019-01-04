@@ -1,5 +1,8 @@
 function W = trainClassifier(trn,clsf,sampleSizes,combiner)
 
+randreset;
+state = randreset;
+
 % If multiple training sets are given as input, the first each training set
 % is trained with the classifier and these mappings are combined with the
 % specified combiner.
@@ -13,7 +16,7 @@ if iscell(trn)
         sizes = sampleSizes(i) .* ones(1,10);
         wCombined = [];
         for j=1:size(trn,2)
-            a = gendat(trn{j},sizes);
+            a = gendat(trn{j},sizes,state);
             w = a*clsf;
             wCombined = [wCombined; w];
         end
@@ -25,7 +28,7 @@ if iscell(trn)
 else
     for i=1:length(sampleSizes)
         sizes = sampleSizes(i) .* ones(1,10);
-        a = gendat(trn,sizes);        
+        a = gendat(trn,sizes,state);        
         W{i} = a*clsf;
     end
 end
