@@ -21,7 +21,13 @@ if iscell(trn)
             wCombined = [wCombined; w];
         end
         
-        W{i} = wCombined*combiner;
+        if iscell(combiner)
+            for j=1:length(combiner)
+                W{j,i} = wCombined*combiner;
+            end
+        else
+            W{i} = wCombined*combiner;
+        end
     end
 % In this case there is one training set and one classifier, and no
 % combining is done.
