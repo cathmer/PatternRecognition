@@ -21,7 +21,7 @@ else
     save('workspace_ini.mat');
 end
 
-pixelclassification(noRot,leftRot,rightRot,tstNoRot,tstLeftRot,tstRightRot);
+[E,W] = pixelclassification(noRot,leftRot,rightRot,tstNoRot,tstLeftRot,tstRightRot);
 
 % e = nist_eval('preprocessing', wNoRot, 100);
 % disp("wNoRot");

@@ -18,20 +18,11 @@ end
 fprintf("All classifiers took %f seconds to complete\n", toc);
 E = {};
 
-for i=1:length(W)
-    if exist('combiner','var') && iscell(combiner)
-        fprintf("The error for size %d is:",sampleSizes(i));
-        
-        for j=1:length(combiner)
-            e = tst*W{j,i}*testc;
-            E{j,i} = e;
-            disp(e);
-        end
-    else
-        e = tst*W{i}*testc;
-        E{i} = e;
-        fprintf("The error for size %d is: %f\n", sampleSizes(i), e);
-    end
+for i=1:size(W,2)
+    e = tst*W{1,i}*testc;
+    E{i} = e;
+    fprintf("The error(s) for size %d is(are): ", sampleSizes(i));
+    disp(e);
 end
 
 
