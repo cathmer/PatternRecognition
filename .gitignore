@@ -23,3 +23,4 @@ octave-workspace
 
 setup.m
 workspace_ini.mat
+optimal_classifier.mat
