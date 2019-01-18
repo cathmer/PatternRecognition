@@ -1,5 +1,5 @@
 setup; % This file should load the paths to the course files
-clear all;
+% clear all;
 %prwaitbar off;
 prwarning off;
 
@@ -8,8 +8,8 @@ prwarning off;
 if isfile('workspace_ini.mat')           
     load('workspace_ini.mat');
 else
-    trn_data = prnist([0:9],[1:1:1000]);
-    tst_data = prnist([0:9], [2:10:1000]);
+    trn_data = prnist([0:9],[1:100:1000]);
+    tst_data = prnist([0:9], [2:100:1000]);
     imgSize = [28 28];
     trn = preprocessing(trn_data,imgSize,0);
 %     trnLeftRot = preprocessing(trn_data,imgSize,-0.35);
@@ -19,15 +19,17 @@ else
 %     tstLeftRot = preprocessing(tst_data,imgSize,-0.35);
 %     tstRightRot = preprocessing(tst_data,imgSize,0.35);
 %     tstMainAxisRot = preprocessing(tst_data,imgSize,0);
+    figure(1); show(trn_data);
+    figure(2); show(trn);
     
     save('workspace_ini.mat');
 end
 
-% w = pixelclassification(trn,trnLeftRot,trnRightRot,trnMainAxisRot,...
-%     tst,tstLeftRot,tstRightRot,tstMainAxisRot);
-% e = nist_eval('my_rep_pixels', w, 100);
-% disp("Pixels classified with 5th polynomial SVM");
-% disp(e);
+w = pixelclassification(trn,trnLeftRot,trnRightRot,trnMainAxisRot,...
+    tst,tstLeftRot,tstRightRot,tstMainAxisRot);
+e = nist_eval('my_rep_pixels', w, 100);
+disp("Pixels classified with 5th polynomial SVM");
+disp(e);
 
 N = prmemory(100000000);
 
