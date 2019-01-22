@@ -9,9 +9,9 @@
 %%             January 2019                     %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-setup; % This file should load the paths to the course files
 clear all;
-prwaitbar off;
+setup; % This file should load the paths to the course files
+%prwaitbar off;
 prwarning off;
 warning off
 
@@ -31,8 +31,8 @@ else
 %     tstLeftRot = preprocessing(tst_data,imgSize,-0.35);
 %     tstRightRot = preprocessing(tst_data,imgSize,0.35);
 %     tstMainAxisRot = preprocessing(tst_data,imgSize,0);
-    figure(1); show(trn_data);
-    figure(2); show(trn);
+%     figure(1); show(trn_data);
+%     figure(2); show(trn);
     
     save('workspace_ini.mat');
 end
@@ -44,7 +44,7 @@ a = setprior(a,getprior(a));
 m = im_moments(a,'zer',12);
 
 w = featself(m,'maha-s');
-trainsize = [2 4 10];
+trainsize = [2 4 9];
 iter =1;
 
 x = m*w;
@@ -53,7 +53,7 @@ e1 = cell(1,numel(trainsize));
 % prwaitbar calls are just used for reporting progress and may be skipped
 [n,s,count] = prwaitbarinit('Processing %i curves:',2*numel(trainsize));
 for j=1:numel(trainsize)
-  e1{j} = clevalf(x,remclass(2)*qdc([],[],1e-6),[1:15],trainsize(j),iter,[],testd);
+  e1{j} = clevalf(x,qdc([],[],1e-6),[1:15],ones(1,10)*trainsize(j),iter);
   count = prwaitbarnext(n,s,count);
 end
 plote(e1,'nolegend')
