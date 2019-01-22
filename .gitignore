@@ -22,6 +22,6 @@ octave-workspace
 .autosave
 
 setup.m
-classifier.mat
-optimal_classifier.mat
 workspace_ini.mat
+optimal_classifier.mat
+classifier.mat
