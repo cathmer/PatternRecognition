@@ -1,6 +1,6 @@
-clear all;
-setup;
-load('classifier.mat');
+% clear all;
+% setup;
+% load('classifier.mat');
 a = segment_digits; % Reads in handwritten_digits2.png and segments the numbers and does
 % some preprocessing as well
 b = getHOGFeatures(a,[2 2]); % Get the HOG Features

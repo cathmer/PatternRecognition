@@ -1,6 +1,6 @@
 function a = segment_digits
 
-I = imread('handwritten_digits2.png'); % Read in image
+I = imread('handwritten_digits3.png'); % Read in image
 I = rgb2gray(I);                        % convert image to grayscale
 binaryImage = imbinarize(I,0.9);        % Convert to binary image
 figure(1); imshow(binaryImage);
@@ -59,7 +59,8 @@ for i=1:2:length(rowIndices)
     end
 end
 
-labels = char(ones(10,1)*'digit_1');
+labels = char(ones(10,1)*'digit_0');
+labels = [labels; char(ones(10,1)*'digit_1')];
 labels = [labels; char(ones(10,1)*'digit_2')];
 labels = [labels; char(ones(10,1)*'digit_3')];
 labels = [labels; char(ones(10,1)*'digit_4')];
