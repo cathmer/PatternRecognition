@@ -1,5 +1,5 @@
 setup; % This file should load the paths to the course files
-% clear all;
+clear all;
 %prwaitbar off;
 prwarning off;
 
@@ -12,13 +12,13 @@ else
     tst_data = prnist([0:9], [2:100:1000]);
     imgSize = [28 28];
     trn = preprocessing(trn_data,imgSize,0);
-%     trnLeftRot = preprocessing(trn_data,imgSize,-0.35);
-%     trnRightRot = preprocessing(trn_data,imgSize,0.35);
-%     trnMainAxisRot = preprocessing(trn_data,imgSize,0);
+    trnLeftRot = preprocessing(trn_data,imgSize,-0.35);
+    trnRightRot = preprocessing(trn_data,imgSize,0.35);
+    trnMainAxisRot = preprocessing(trn_data,imgSize,0);
     tst = preprocessing(tst_data,imgSize,0);
-%     tstLeftRot = preprocessing(tst_data,imgSize,-0.35);
-%     tstRightRot = preprocessing(tst_data,imgSize,0.35);
-%     tstMainAxisRot = preprocessing(tst_data,imgSize,0);
+    tstLeftRot = preprocessing(tst_data,imgSize,-0.35);
+    tstRightRot = preprocessing(tst_data,imgSize,0.35);
+    tstMainAxisRot = preprocessing(tst_data,imgSize,0);
     figure(1); show(trn_data);
     figure(2); show(trn);
     
@@ -41,7 +41,7 @@ fprintf("It took %f seconds to extract the HOG features\n", toc);
 % Extracting HOG features for 1000 elements per class takes less than 15
 % mins
 
-sampleSizes = [1000];
+sampleSizes = [10];
 clsf2 = svc(proxm('r',5))*classc;
 msg = "Testing SVM with radial basis 5";
 [E,W] = testClassifier(trn,tst,clsf2,sampleSizes,msg);
